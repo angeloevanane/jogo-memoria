@@ -99,13 +99,41 @@ function realizaEscolha(id) {
         } else {
             alert('NOOOOPE');
 
+            desativaClicksDiv();
+
+
             setTimeout( function() {
                 viraCarta(card1);
                 viraCarta(card2);
+                ativaClicksDiv();
             }, 2000);
 
         }
 
         firstCard = true;
+    }
+}
+
+
+function desativaClicksDiv() {
+    let cardsDiv = document.querySelectorAll('.memory-card');
+
+            for (let i = 0; i< cardsDiv.length; i++) {
+
+                cardsDiv[i].onclick = function() {
+                    alert('wait!');
+                };
+
+            }
+}
+
+function ativaClicksDiv() {
+    let cardsDiv = document.querySelectorAll('.memory-card');
+
+    for (let i = 0; i< cardsDiv.length; i++) {
+
+        cardsDiv[i].onclick = function() {
+            validaCarta(this.id);
+        };
     }
 }
