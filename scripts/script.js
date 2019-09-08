@@ -1,11 +1,37 @@
 var imagens = [ 24 ];
 var firstCard = true;
-var card1Src, card1Id;
 var cardsAbertos = [];
+var btnElement = document.querySelector('#btnReiniciar');
+btnElement.onclick = zeraJogo;
 
 armazenaNomes();
 imagens = embaralhaArray(imagens);
 distribuiLogos();
+zeraJogo();
+
+function zeraJogo() {
+    firstCard = true;
+    cardsAbertos = [];
+    imagens = embaralhaArray(imagens);
+    distribuiLogos();
+    exibeCards();
+}
+
+function exibeCards() {
+
+    let cards = document.querySelectorAll('.memory-card');
+
+    for (const card of cards) {
+        card.firstElementChild.style.visibility = 'visible';
+    }
+
+    setTimeout( function() {
+        for (const card of cards) {
+            card.firstElementChild.style.visibility = 'hidden';
+        }
+    }, 1000);
+
+}
 
 function armazenaNomes() {
     for (let i = 0; i < 24; i++) {
@@ -35,6 +61,7 @@ function embaralhaArray(array) {
 }
 
 function distribuiLogos() {
+
     let cardsImage = document.querySelectorAll('.memory-card img.logo');
     let cardsDiv = document.querySelectorAll('.memory-card');
 
@@ -54,9 +81,6 @@ function distribuiLogos() {
 
 function validaCarta(id) {
 
-    let card = document.querySelector('#' + id);
-
-
     if (cardsAbertos.indexOf(id) !== -1) {
         alert('o card ja foi aberto amigao');
     }
@@ -65,9 +89,7 @@ function validaCarta(id) {
     }
 }
 
-
 function viraCarta(card) {
-
 
     if (card.firstElementChild.style.visibility === 'hidden') {
         card.firstElementChild.style.visibility = 'visible';
@@ -76,12 +98,9 @@ function viraCarta(card) {
     }
 }
 
-
 function realizaEscolha(id) {
     if(!firstCard && document.querySelector('#' + id).id == card1.id) {
         alert("Parado aí forasteiro!");
-    } else if(document.querySelector('#' + id).style.visibility == 'visible') {
-        alert('HAHA ja esta levantada meu rei');
     } else if (firstCard) {
         card1 = document.querySelector('#' + id);
         viraCarta(card1);
@@ -92,28 +111,27 @@ function realizaEscolha(id) {
 
 
         if ( card1.firstElementChild.src == card2.firstElementChild.src ) {
-            alert('BOA MEU MANO');
+
             cardsAbertos.push(card1.id);
             cardsAbertos.push(card2.id);
 
+            if (cardsAbertos[23] != undefined) {
+                alert('Parabéns!');
+            }
         } else {
-            alert('NOOOOPE');
-
             desativaClicksDiv();
-
 
             setTimeout( function() {
                 viraCarta(card1);
                 viraCarta(card2);
                 ativaClicksDiv();
-            }, 2000);
+            }, 1000);
 
         }
 
         firstCard = true;
     }
 }
-
 
 function desativaClicksDiv() {
     let cardsDiv = document.querySelectorAll('.memory-card');

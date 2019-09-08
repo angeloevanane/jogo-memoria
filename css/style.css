@@ -7,6 +7,12 @@
     border-radius: 10px;
 }
 
+/*
+.memory-card:active {
+    transform: scale(0.97);
+    transition: transform .2s;
+  }*/
+
 .memory-card:hover {
     background-color: black;
 }
