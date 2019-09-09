@@ -7,15 +7,19 @@
     border-radius: 10px;
 }
 
-/*
 .memory-card:active {
     transform: scale(0.97);
     transition: transform .2s;
-  }*/
-
-.memory-card:hover {
-    background-color: black;
 }
+
+#btnReiniciar:active {
+    transform: scale(0.97);
+    transition: transform .2s;
+}
+/*
+.memory-card:hover {
+    background-color: silver;
+}*/
 
 img {
     margin-top: 10px;
@@ -23,12 +27,35 @@ img {
 }
 
 #memory-game {
+    background-color: rgb(199, 217, 204);
     position: relative;
     top: 30px;
     padding: 25px;
     border: 1px solid black;
     border-radius: 5px 25px;
-    width: 52%;
+    width: 700px;
     margin-left: auto;
     margin-right: auto;
+}
+
+#divBtnReiniciar {
+    position: relative;
+    top: 10px;
+    height: 30px;
+    width: 20%;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    /*border: 1px solid black;*/
+}
+
+#btnReiniciar {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    border-style: groove;
+    background-color: rgb(230, 237, 232);
 }

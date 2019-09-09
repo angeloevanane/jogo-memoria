@@ -10,11 +10,30 @@ distribuiLogos();
 zeraJogo();
 
 function zeraJogo() {
+
+    let cards = document.querySelectorAll('.memory-card');
+//checkpoint
+    for (let card of cards) {
+        card.style.backgroundColor = 'white';
+
+        card.onmouseover = function() {
+            card.style.backgroundColor = 'silver';
+        }
+
+        card.onmouseout = function() {
+            card.style.backgroundColor = 'white';
+        }
+
+        card.style.opacity = 1;
+        card.style.borderColor = 'black';
+    }
+
     firstCard = true;
     cardsAbertos = [];
     imagens = embaralhaArray(imagens);
     distribuiLogos();
     exibeCards();
+
 }
 
 function exibeCards() {
@@ -23,13 +42,19 @@ function exibeCards() {
 
     for (const card of cards) {
         card.firstElementChild.style.visibility = 'visible';
+        card.onclick = function () {
+            //alert('wait');
+        }
     }
 
     setTimeout( function() {
         for (const card of cards) {
             card.firstElementChild.style.visibility = 'hidden';
+            card.onclick = function() {
+                validaCarta(this.id);
+            };
         }
-    }, 1000);
+    }, 1100);
 
 }
 
@@ -82,7 +107,7 @@ function distribuiLogos() {
 function validaCarta(id) {
 
     if (cardsAbertos.indexOf(id) !== -1) {
-        alert('o card ja foi aberto amigao');
+        alert('O card já foi escolhido');
     }
     else {
         realizaEscolha(id);
@@ -100,7 +125,8 @@ function viraCarta(card) {
 
 function realizaEscolha(id) {
     if(!firstCard && document.querySelector('#' + id).id == card1.id) {
-        alert("Parado aí forasteiro!");
+        //alert('Você não pode escolher o mesmo card');
+        alert('Parado aí forasteiro!');
     } else if (firstCard) {
         card1 = document.querySelector('#' + id);
         viraCarta(card1);
@@ -114,6 +140,9 @@ function realizaEscolha(id) {
 
             cardsAbertos.push(card1.id);
             cardsAbertos.push(card2.id);
+
+            excluiCard(card1);
+            excluiCard(card2);
 
             if (cardsAbertos[23] != undefined) {
                 alert('Parabéns!');
@@ -136,13 +165,11 @@ function realizaEscolha(id) {
 function desativaClicksDiv() {
     let cardsDiv = document.querySelectorAll('.memory-card');
 
-            for (let i = 0; i< cardsDiv.length; i++) {
-
-                cardsDiv[i].onclick = function() {
-                    alert('wait!');
-                };
-
-            }
+        for (let i = 0; i< cardsDiv.length; i++) {
+            cardsDiv[i].onclick = function() {
+                //alert('wait!');
+            };
+        }
 }
 
 function ativaClicksDiv() {
@@ -154,4 +181,14 @@ function ativaClicksDiv() {
             validaCarta(this.id);
         };
     }
+}
+
+function excluiCard(card) {
+
+    card.onmouseout = null;
+    card.onmouseover = null;
+
+    card.style.backgroundColor = 'silver';
+    card.style.opacity = 0.3;
+    card.style.borderColor = 'gray';
 }
