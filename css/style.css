@@ -1,3 +1,7 @@
+body {
+    background-image: url('bg_02.jpg');
+}
+
 .memory-card {
     display: inline-block;
     width: 100px;
@@ -27,12 +31,15 @@ img {
 }
 
 #memory-game {
-    background-color: rgb(199, 217, 204);
+    /*background-color: rgb(227, 216, 216);*/
+    /*background-image: url('C:/Users/Angelo/Documents/GitHub/jogo-memoria/images/bg_01.jpg');*/
+    background-image: url('bg_03.jpg');
+    background-size: 100%;
     position: relative;
     top: 30px;
     padding: 25px;
     border: 1px solid black;
-    border-radius: 5px 25px;
+    border-radius: 25px;
     width: 700px;
     margin-left: auto;
     margin-right: auto;
