@@ -1,3 +1,5 @@
+console.log('O que você está procurando por aqui?');
+
 var imagens = [ 24 ];
 var firstCard = true;
 var cardsAbertos = [];
