@@ -147,7 +147,9 @@ function realizaEscolha(id) {
             excluiCard(card2);
 
             if (cardsAbertos[23] != undefined) {
-                alert('Parabéns!');
+                setTimeout(function(){
+                    alert('Parabéns!');
+                }, 600);
             }
         } else {
             desativaClicksDiv();
